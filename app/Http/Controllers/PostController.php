@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\User;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,10 +15,10 @@ class PostController extends Controller
      */
     public function index()
     {
-//    $posts = Post::all();
-//    return view('main', compact("posts"));
-$posts = Post::orderByDesc('created_at')->get();
-return view('main', compact("posts"));
+        //    $posts = Post::all();
+        //    return view('main', compact("posts"));
+        $posts = Post::orderByDesc('created_at')->get();
+        return view('main', compact("posts"));
     }
 
     /**
@@ -24,34 +26,36 @@ return view('main', compact("posts"));
      */
     public function store(Request $request)
     {
-// $user = Auth::user()->id; // Получаем текущего авторизованного пользователя
 
-// $filename = time().'.'.$extension;
-// $filePath = $file->storeAs('uploads/photos', $filename, 'public');
-// $post = new Post([
-//     'user_id' => $user,
-//     'title' => $request->input('title'),
-//     'name' => $filename,
-//     'path' => $filePath
-    // Другие поля поста...
-// ]);
+        $user = Auth::user()->id; // Получаем текущего авторизованного пользователя
+        // $request->validate([
+        //     'content' => 'required|max:255|string',
+        //     'image' => 'nullable|mimes:png,jpg,jpeg,webp',
+        // ]);
+        // if ($request->has('image')) {
+        //     $file = $request->file('image');
+        //     $extension = $file->getClientOriginalExtension();
 
+        //     $filename = time() . '.' . $extension;
+        //     $path = 'uploads/category/';
+        //     $file->move($path, $filename);
+        // }
+        Post::create([
+            'user_id' => $user,
+            'content' => $request->content,
 
-// Присваиваем автоматически ID пользователя
-// $post->user()->associate($user);
+            // 'image' => $path . $filename,
+        ]);
 
-// Сохраняем пост
-$post->save();
-
-return redirect()->route('main')->with('succes', 'Post created successfully');
+        return redirect()->route('home')->with('succes', 'Post created successfully');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Post $post)
     {
-    return Post::findOrFail($id);
+        return view('posts.show', compact('posts'));
     }
 
     /**
@@ -65,8 +69,12 @@ return redirect()->route('main')->with('succes', 'Post created successfully');
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        //
+        // $post = Post::where('id', $id)->firstOrFail()->delete();
+        // return redirect()->route('home')->with('success', 'Post delete succesfully!');
+        $post->delete();
+
+        return redirect()->route('home')->with('success', 'Post deleted successfully');
     }
 }

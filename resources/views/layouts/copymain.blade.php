@@ -30,7 +30,7 @@
                     <a href="{{ url('/main') }}" class="flex ms-2 md:me-24">
                         <img src="{{ asset('images/logo.jpg') }}" class="h-8 me-3" alt="Chatter logo" />
                         <span
-                            class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Chatter</span>
+                            class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Flowbite</span>
                     </a>
                 </div>
                 <div class="flex items-center">
@@ -137,7 +137,7 @@
                         </div>
                         <div class="flex-1">
                             <p class="text-md">{{ $post->user->name }}</p>
-                            <p class="text-sm">{{ $post->created_at }}</p>
+                            <p class="text-sm">10.09.2004</p>
                         </div>
 
                     </div>
@@ -158,14 +158,13 @@
                             </div>
                         </form>
                     </div>
-                    <div>
+                    {{-- <div>
                         @auth()
                             @if (Auth::user()->likesPost($post))
                                 <form action="asset{{ route('posts.unlike', $post->id) }}" method="POST">
                                     @csrf
                                     <button type="submit">
-                                        <span class=""><img class="w-5 h-5"
-                                                src="{{ asset('images/like.png') }}"></span>
+                                        <span class=""><img src="{{ asset('images/like.png') }}"></span>
                                         {{ $post->likes()->count() }}
                                     </button>
                                 </form>
@@ -175,7 +174,7 @@
                             <form action="asset{{ route('posts.like', $post->id) }}" method="POST">
                                 @csrf
                                 <button type="submit">
-                                    <span><img class="w-5 h-5" src="{{ asset('images/like.png') }}"></span>
+                                    <span><img src="{{ asset('images/like.png') }}"></span>
                                     {{ $post->likes()->count() }}
                                 </button>
                             </form>
@@ -186,13 +185,13 @@
                     </span> {{ $post->likes_count }} </a>
             @endguest
 
+        </div> --}}
+                </div>
+
+
+
         </div>
-    </div>
-
-
-
-    </div>
-    @endforeach
+        @endforeach
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
