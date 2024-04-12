@@ -193,7 +193,7 @@
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                             stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                                     </svg>
-                                    <span class="sr-only">Close modal</span>
+                                    <span class="sr-only">Закрыть</span>
                                 </button>
                             </div>
                             <!-- Modal body -->
@@ -202,10 +202,14 @@
                                 <div class="grid gap-4 mb-4 grid-cols-2">
                                     <div class="col-span-2">
                                         <label for="content"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Контент</label>
                                         <input type="text" name="content" id="content"
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                             placeholder="Что у вас нового?" required="">
+                                    </div>
+                                    <div class="col-span-2">
+                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="image">Фото</label>
+                                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="image" type="file">
                                     </div>
                                     {{-- <div class="col-span-2 sm:col-span-1">
                                         <label for="price"

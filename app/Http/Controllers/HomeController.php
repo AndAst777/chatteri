@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $posts = Post::orderByDesc('created_at')->where('user_id' . '=' . $user)->get();
+        $posts = Post::orderByDesc('created_at')->get();
         // $posts = $user;
         return view('home', compact("posts"));
     }

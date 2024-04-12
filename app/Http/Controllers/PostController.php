@@ -40,9 +40,13 @@ class PostController extends Controller
         //     $path = 'uploads/category/';
         //     $file->move($path, $filename);
         // }
+        // $image = $request->file('imagename')->store('public');
+        // $filename    = $data['image']->getClientOriginalName();
+        // $data['image']->move(Storage::path('/public/image/news/').'origin/',$filename);
         Post::create([
             'user_id' => $user,
             'content' => $request->content,
+
 
             // 'image' => $path . $filename,
         ]);

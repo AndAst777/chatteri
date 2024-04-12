@@ -69,7 +69,7 @@
                                                 <li>
                                                     <a href="#"
                                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                                        role="menuitem">Settings</a>
+                                                        role="menuitem">Настройки</a>
                                                 </li>
 
                                                 <li>
@@ -127,72 +127,37 @@
     </aside>
     <div class="p-4 sm:ml-64">
         {{-- <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14"> --}}
-        <div class="grid grid-cols-1 gap-4 mb-4 place-items-center items-center mt-14">
-            @foreach ($posts as $post)
-                <div class="max-w-md p-4 bg-white border border-gray-300 rounded-lg ">
-                    <div class="flex">
-                        <div class="flex items-center">
-                            <img class="w-10 h-10 rounded-full border border-gray-200"
-                                src="{{ asset('image/avatar.jpg') }}" alt="Avatar-user">
-                        </div>
-                        <div class="flex-1">
-                            <p class="text-md">{{ $post->user->name }}</p>
-                            <p class="text-sm">{{ $post->created_at }}</p>
-                        </div>
-
-                    </div>
-
-                    <div class="">
-                        <p class="mt-2">{{ $post->content }}</p>
-                    </div>
-
-                    <img class="rounded-sm mt-2" class="p-0" src="{{ asset('images/meme.jpg') }}" alt="Post">
-                    <div>
-                        <form action="{{ route('posts.comments.store', $post->id) }}" method="POST">
-                            @csrf
-                            <div>
-                                <textarea name="content" rows="1"></textarea>
+            <div class="grid grid-cols-1 gap-4 mb-4 place-items-center items-center mt-14">
+                @foreach ($applications as $application)
+                    <div class="max-w-md p-4 bg-white border border-gray-300 rounded-lg ">
+                        <div class="flex">
+                            <div class="flex items-center">
+                                <img class="w-10 h-10 rounded-full border border-gray-200"
+                                    src="{{ asset('image/avatar.jpg') }}" alt="Avatar-user">
                             </div>
-                            <div>
-                                <button type="submit">Оставить комментарий</button>
+                            <div class="flex-1">
+                                <p class="text-md">{{ $application->user->name }}</p>
+                                <p class="text-sm">{{ $application->created_at }}</p>
                             </div>
-                        </form>
-                    </div>
-                    <div>
-                        @auth()
-                            @if (Auth::user()->likesPost($post))
-                                <form action="asset{{ route('posts.unlike', $post->id) }}" method="POST">
-                                    @csrf
-                                    <button type="submit">
-                                        <span class=""><img class="w-5 h-5"
-                                                src="{{ asset('images/like.png') }}"></span>
-                                        {{ $post->likes()->count() }}
-                                    </button>
-                                </form>
+
                         </div>
-                    @else
+
+                        <div class="">
+                            <p class="mt-2">{{ $application->content }}</p>
+                        </div>
+
+                        <img class="rounded-sm mt-2" class="p-0" src="{{ asset('images/meme.jpg') }}" alt="Post">
                         <div>
-                            <form action="asset{{ route('posts.like', $post->id) }}" method="POST">
-                                @csrf
-                                <button type="submit">
-                                    <span><img class="w-5 h-5" src="{{ asset('images/like.png') }}"></span>
-                                    {{ $post->likes()->count() }}
-                                </button>
-                            </form>
-                @endif
-            @endauth
-            @guest
-                <a href="{{ route('login') }}" class="fw-light nav-link fs-6"> <span class="far fa-heart me-1">
-                    </span> {{ $post->likes_count }} </a>
-            @endguest
+
+
+
+            </div>
+        </div>
+
+
 
         </div>
-    </div>
-
-
-
-    </div>
-    @endforeach
+        @endforeach
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>

@@ -16,19 +16,27 @@
             <span>Chatter</span>
         </a>
         <div class="w-full max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow dark:bg-gray-800">
-            <div class="card-header">{{ __('Login') }}</div>
+            {{-- <div class="card-header">{{ __('Login') }}</div> --}}
 
             <div class="card-body">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
 
                     <div class="row mb-3">
+                        {{-- <label for="email"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Почта</label>
+                    <input type="email" name="email" id="email"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        placeholder="name@company.com" required=""> --}}
                         <label for="email"
-                            class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Email Address') }}</label>
 
                         <div class="col-md-6">
+
                             <input id="email" type="email"
                                 class="form-control @error('email') is-invalid @enderror" name="email"
+                                class=" @error('email') is-invalid @enderror" name="email
+                                bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                             @error('email')
